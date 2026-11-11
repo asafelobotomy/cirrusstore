@@ -1,0 +1,4 @@
+# The publisher tool, built by scripts/tool.sh
+.tools/
+# Signing keys never enter the repository
+*.key
