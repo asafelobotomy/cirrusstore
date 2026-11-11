@@ -26,6 +26,11 @@ layout.
 - Set `minVersion` only when a definition uses a field newer than some
   CirrusUX release, and keep `cirrusux.env` at or above the newest
   `minVersion` (raise `CIRRUSUX_TAG` and `CIRRUSUX_COMMIT` together).
+- Download apps (the Downloads group) share one writable media volume,
+  `data` at `/data`: downloads in `/data/downloads`, the library in
+  `/data/media/{films,series,music}`, so finished files move without a copy.
+  New ones follow the same layout.
+- No host port may clash with another app's: check every file in `defs/`.
 - No secrets and no personal details: use `homeserver`, `192.0.2.x`,
   `aa:bb:cc:dd:ee:ff`.
 - Plain English in descriptions and notes: short sentences, no jargon a
@@ -37,7 +42,11 @@ Before the first publication (CirrusUX ROADMAP §5, step 2):
 1. ~~Create the public GitHub repository, Pages from GitHub Actions,
    private vulnerability reporting~~: done 11 November 2026.
 2. Bring `defs/` up to date: newest stable tag and digest for each of the
-   11 apps, each tried on a test machine (install, open, update, remove).
+   11 apps that came from CirrusUX, each tried on a test machine (install,
+   open, update, remove). The first wave of new apps (qBittorrent, SABnzbd,
+   Sonarr, Radarr, Lidarr, Prowlarr, Bazarr, Seerr) was added on
+   11 November 2026: images run and answer their checks under Podman, but
+   none has been installed through a CirrusUX panel yet.
 3. The maintainer signs the first site (`scripts/sign.sh`), commits and
    pushes `site/`; `pages.yml` publishes it.
 4. Check the live site: `curl` `index.json`, and run

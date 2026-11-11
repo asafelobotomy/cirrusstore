@@ -1,0 +1,58 @@
+{
+  "id": "sabnzbd",
+  "name": "SABnzbd",
+  "description": "Download from Usenet, from a web page.",
+  "website": "https://sabnzbd.org",
+  "icon": "Package",
+  "color": "#f0b400",
+  "group": "Downloads",
+  "image": "ghcr.io/linuxserver/sabnzbd",
+  "tag": "5.1.3-ls280",
+  "digest": "sha256:693c208f697d0b411410edd92a98b52c8c754c01f5c078a975cbc892044260f5",
+  "ports": [
+    {
+      "name": "web",
+      "container": 8080,
+      "host": 8085,
+      "main": true
+    }
+  ],
+  "volumes": [
+    {
+      "name": "config",
+      "path": "/config",
+      "kind": "config"
+    },
+    {
+      "name": "data",
+      "path": "/data",
+      "kind": "media",
+      "writable": true,
+      "label": "Media and downloads folder"
+    }
+  ],
+  "env": [
+    {
+      "name": "PUID",
+      "value": "{{uid}}"
+    },
+    {
+      "name": "PGID",
+      "value": "{{gid}}"
+    },
+    {
+      "name": "UMASK",
+      "value": "002"
+    },
+    {
+      "name": "TZ",
+      "value": "{{tz}}"
+    }
+  ],
+  "check": {
+    "port": "web",
+    "path": "/"
+  },
+  "minMemoryMB": 256,
+  "notes": "The first visit runs a wizard for your Usenet provider; set the folders to /data/downloads/incomplete and /data/downloads/complete. If it says the hostname failed verification, open it once by the server's IP address and add the name under Config → Special → host_whitelist. Give every download app the same Media and downloads folder, with downloads in /data/downloads and your library in /data/media, so finished files move into the library without being copied. The folder must belong to the apps' user (or set APPS_MEDIA_UID and APPS_MEDIA_GID to its owner); point Jellyfin at the library inside it."
+}

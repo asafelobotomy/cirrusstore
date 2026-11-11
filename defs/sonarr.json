@@ -1,0 +1,58 @@
+{
+  "id": "sonarr",
+  "name": "Sonarr",
+  "description": "Finds new episodes of your series, and files them in your library.",
+  "website": "https://sonarr.tv",
+  "icon": "Play",
+  "color": "#35c5f4",
+  "group": "Downloads",
+  "image": "ghcr.io/linuxserver/sonarr",
+  "tag": "4.0.20.3014-ls4",
+  "digest": "sha256:673dc4609a5672bc8e46069c86ffcea283a86b48d34a6c93d8da8c24a1b87571",
+  "ports": [
+    {
+      "name": "web",
+      "container": 8989,
+      "host": 8989,
+      "main": true
+    }
+  ],
+  "volumes": [
+    {
+      "name": "config",
+      "path": "/config",
+      "kind": "config"
+    },
+    {
+      "name": "data",
+      "path": "/data",
+      "kind": "media",
+      "writable": true,
+      "label": "Media and downloads folder"
+    }
+  ],
+  "env": [
+    {
+      "name": "PUID",
+      "value": "{{uid}}"
+    },
+    {
+      "name": "PGID",
+      "value": "{{gid}}"
+    },
+    {
+      "name": "UMASK",
+      "value": "002"
+    },
+    {
+      "name": "TZ",
+      "value": "{{tz}}"
+    }
+  ],
+  "check": {
+    "port": "web",
+    "path": "/ping"
+  },
+  "minMemoryMB": 256,
+  "notes": "The first visit asks you to choose how to sign in. Under Settings → Download Clients, add qBittorrent or SABnzbd by the server's LAN address and port; Prowlarr fills in the indexers. Add /data/media/series as the root folder. Give every download app the same Media and downloads folder, with downloads in /data/downloads and your library in /data/media, so finished files move into the library without being copied. The folder must belong to the apps' user (or set APPS_MEDIA_UID and APPS_MEDIA_GID to its owner); point Jellyfin at the library inside it."
+}
