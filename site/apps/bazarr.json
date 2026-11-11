@@ -1,0 +1,63 @@
+{
+  "source": "cirrusstore",
+  "serial": 1,
+  "expires": "2027-05-10T15:17:04Z",
+  "app": {
+    "id": "bazarr",
+    "name": "Bazarr",
+    "description": "Fetches subtitles for the films and series that Sonarr and Radarr file.",
+    "website": "https://www.bazarr.media",
+    "icon": "Type",
+    "color": "#7b5ea7",
+    "group": "Downloads",
+    "image": "ghcr.io/linuxserver/bazarr",
+    "tag": "v1.6.2-ls372",
+    "digest": "sha256:832820dec70bce9e912c6eee7a95baf6551e03dbc63325a7208daaa455423752",
+    "ports": [
+      {
+        "name": "web",
+        "container": 6767,
+        "host": 6767,
+        "main": true
+      }
+    ],
+    "volumes": [
+      {
+        "name": "config",
+        "path": "/config",
+        "kind": "config"
+      },
+      {
+        "name": "data",
+        "path": "/data",
+        "kind": "media",
+        "writable": true,
+        "label": "Media and downloads folder"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "value": "{{uid}}"
+      },
+      {
+        "name": "PGID",
+        "value": "{{gid}}"
+      },
+      {
+        "name": "UMASK",
+        "value": "002"
+      },
+      {
+        "name": "TZ",
+        "value": "{{tz}}"
+      }
+    ],
+    "check": {
+      "port": "web",
+      "path": "/api/system/ping"
+    },
+    "minMemoryMB": 256,
+    "notes": "Turn on sign-in first, under Settings → General → Security. Then connect Sonarr and Radarr by the server's LAN address and their API keys, and pick your languages and subtitle providers. Subtitles are saved next to each video. Give every download app the same Media and downloads folder, with downloads in /data/downloads and your library in /data/media, so finished files move into the library without being copied. The folder must belong to the apps' user (or set APPS_MEDIA_UID and APPS_MEDIA_GID to its owner); point Jellyfin at the library inside it."
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "source": "cirrusstore",
+  "serial": 1,
+  "expires": "2027-05-10T15:17:04Z",
+  "apps": [
+    {
+      "id": "audiobookshelf",
+      "serial": 1,
+      "name": "Audiobookshelf",
+      "group": "Watch \u0026 listen",
+      "icon": "Headphones"
+    },
+    {
+      "id": "bazarr",
+      "serial": 1,
+      "name": "Bazarr",
+      "group": "Downloads",
+      "icon": "Type"
+    },
+    {
+      "id": "home-assistant",
+      "serial": 1,
+      "name": "Home Assistant",
+      "group": "Home",
+      "icon": "House"
+    },
+    {
+      "id": "jellyfin",
+      "serial": 1,
+      "name": "Jellyfin",
+      "group": "Watch \u0026 listen",
+      "icon": "Clapperboard"
+    },
+    {
+      "id": "kavita",
+      "serial": 1,
+      "name": "Kavita",
+      "group": "Watch \u0026 listen",
+      "icon": "BookOpen"
+    },
+    {
+      "id": "lidarr",
+      "serial": 1,
+      "name": "Lidarr",
+      "group": "Downloads",
+      "icon": "Music"
+    },
+    {
+      "id": "navidrome",
+      "serial": 1,
+      "name": "Navidrome",
+      "group": "Watch \u0026 listen",
+      "icon": "Music"
+    },
+    {
+      "id": "nextcloud",
+      "serial": 1,
+      "name": "Nextcloud",
+      "group": "Files",
+      "icon": "Cloud"
+    },
+    {
+      "id": "picard",
+      "serial": 1,
+      "name": "MusicBrainz Picard",
+      "group": "Manage",
+      "icon": "Tags"
+    },
+    {
+      "id": "prowlarr",
+      "serial": 1,
+      "name": "Prowlarr",
+      "group": "Downloads",
+      "icon": "Search"
+    },
+    {
+      "id": "qbittorrent",
+      "serial": 1,
+      "name": "qBittorrent",
+      "group": "Downloads",
+      "icon": "Download"
+    },
+    {
+      "id": "radarr",
+      "serial": 1,
+      "name": "Radarr",
+      "group": "Downloads",
+      "icon": "Film"
+    },
+    {
+      "id": "sabnzbd",
+      "serial": 1,
+      "name": "SABnzbd",
+      "group": "Downloads",
+      "icon": "Package"
+    },
+    {
+      "id": "seerr",
+      "serial": 1,
+      "name": "Seerr",
+      "group": "Watch \u0026 listen",
+      "icon": "Send"
+    },
+    {
+      "id": "sonarr",
+      "serial": 1,
+      "name": "Sonarr",
+      "group": "Downloads",
+      "icon": "Play"
+    },
+    {
+      "id": "syncthing",
+      "serial": 1,
+      "name": "Syncthing",
+      "group": "Files",
+      "icon": "RefreshCw"
+    },
+    {
+      "id": "tinymediamanager",
+      "serial": 1,
+      "name": "tinyMediaManager",
+      "group": "Manage",
+      "icon": "Film"
+    },
+    {
+      "id": "uptime-kuma",
+      "serial": 1,
+      "name": "Uptime Kuma",
+      "group": "Manage",
+      "icon": "Activity"
+    },
+    {
+      "id": "vaultwarden",
+      "serial": 1,
+      "name": "Vaultwarden",
+      "group": "Home",
+      "icon": "Lock"
+    }
+  ]
+}

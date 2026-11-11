@@ -1,0 +1,54 @@
+{
+  "source": "cirrusstore",
+  "serial": 1,
+  "expires": "2027-05-10T15:17:04Z",
+  "app": {
+    "id": "home-assistant",
+    "name": "Home Assistant",
+    "description": "Home automation that keeps your devices local.",
+    "website": "https://www.home-assistant.io",
+    "icon": "House",
+    "color": "#18bcf2",
+    "group": "Home",
+    "image": "docker.io/homeassistant/home-assistant",
+    "tag": "2026.11.1",
+    "digest": "sha256:6785d1eca68747a524c156faae1b139ed415c07357386ae6fe17291986e59e82",
+    "ports": [
+      {
+        "name": "web",
+        "container": 8123,
+        "host": 8123,
+        "main": true
+      }
+    ],
+    "volumes": [
+      {
+        "name": "config",
+        "path": "/config",
+        "kind": "config"
+      }
+    ],
+    "devices": [
+      {
+        "path": "/dev/ttyUSB0",
+        "optional": true,
+        "why": "A Zigbee or Z-Wave USB stick",
+        "hostGroups": [
+          "dialout"
+        ]
+      }
+    ],
+    "env": [
+      {
+        "name": "TZ",
+        "value": "{{tz}}"
+      }
+    ],
+    "check": {
+      "port": "web",
+      "path": "/manifest.json"
+    },
+    "minMemoryMB": 512,
+    "notes": "It runs without host networking, so devices on your network aren't found by themselves: add them by address."
+  }
+}

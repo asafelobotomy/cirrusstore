@@ -1,0 +1,44 @@
+{
+  "source": "cirrusstore",
+  "serial": 1,
+  "expires": "2027-05-10T15:17:04Z",
+  "app": {
+    "id": "nextcloud",
+    "name": "Nextcloud",
+    "description": "Files, calendars and contacts of your own.",
+    "website": "https://nextcloud.com",
+    "icon": "Cloud",
+    "color": "#0082c9",
+    "group": "Files",
+    "image": "docker.io/library/nextcloud",
+    "tag": "35.0.2-apache",
+    "digest": "sha256:786c102155d2717ba0f53a62b3fdd7a1354edc48e800b94dbe32294d9a5752a2",
+    "ports": [
+      {
+        "name": "web",
+        "container": 80,
+        "host": 8080,
+        "main": true
+      }
+    ],
+    "volumes": [
+      {
+        "name": "data",
+        "path": "/var/www/html",
+        "kind": "data"
+      }
+    ],
+    "env": [
+      {
+        "name": "TZ",
+        "value": "{{tz}}"
+      }
+    ],
+    "check": {
+      "port": "web",
+      "path": "/status.php"
+    },
+    "minMemoryMB": 512,
+    "notes": "Uses SQLite, which suits a household. The first visit creates the admin account; add this server's address to the trusted domains it suggests."
+  }
+}

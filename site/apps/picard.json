@@ -1,0 +1,63 @@
+{
+  "source": "cirrusstore",
+  "serial": 1,
+  "expires": "2027-05-10T15:17:04Z",
+  "app": {
+    "id": "picard",
+    "name": "MusicBrainz Picard",
+    "description": "Tag and rename your music from the MusicBrainz database.",
+    "website": "https://picard.musicbrainz.org",
+    "icon": "Tags",
+    "color": "#8d7cf6",
+    "group": "Manage",
+    "image": "docker.io/jlesage/musicbrainz-picard",
+    "tag": "v26.11.1",
+    "digest": "sha256:80f082c3631e68e9163b1ed658d2612e8ec8396bfed51090ed3967cad08e2964",
+    "ports": [
+      {
+        "name": "web",
+        "container": 5800,
+        "host": 5800,
+        "main": true
+      }
+    ],
+    "volumes": [
+      {
+        "name": "config",
+        "path": "/config",
+        "kind": "config"
+      },
+      {
+        "name": "music",
+        "path": "/storage",
+        "kind": "media",
+        "writable": true,
+        "label": "Music folder"
+      }
+    ],
+    "env": [
+      {
+        "name": "USER_ID",
+        "value": "{{uid}}"
+      },
+      {
+        "name": "GROUP_ID",
+        "value": "{{gid}}"
+      },
+      {
+        "name": "UMASK",
+        "value": "0002"
+      },
+      {
+        "name": "TZ",
+        "value": "{{tz}}"
+      }
+    ],
+    "check": {
+      "port": "web",
+      "path": "/"
+    },
+    "minMemoryMB": 512,
+    "notes": "It runs as a desktop in the browser, with no password of its own: keep it to your LAN and tailnet. Your music is in /storage, written as the apps' user (set APPS_MEDIA_UID and APPS_MEDIA_GID to your media's owner). Turn off Picard's own update check in its Options: CirrusStore updates it."
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "source": "cirrusstore",
+  "serial": 1,
+  "expires": "2027-05-10T15:17:04Z",
+  "app": {
+    "id": "radarr",
+    "name": "Radarr",
+    "description": "Finds the films you want, and files them in your library.",
+    "website": "https://radarr.video",
+    "icon": "Film",
+    "color": "#ffc230",
+    "group": "Downloads",
+    "image": "ghcr.io/linuxserver/radarr",
+    "tag": "6.4.4.10685-ls326",
+    "digest": "sha256:51a9ac2a9eb47afc833541e5fd6c11b86eb9f810694c22fa2429e3078e9194b2",
+    "ports": [
+      {
+        "name": "web",
+        "container": 7878,
+        "host": 7878,
+        "main": true
+      }
+    ],
+    "volumes": [
+      {
+        "name": "config",
+        "path": "/config",
+        "kind": "config"
+      },
+      {
+        "name": "data",
+        "path": "/data",
+        "kind": "media",
+        "writable": true,
+        "label": "Media and downloads folder"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "value": "{{uid}}"
+      },
+      {
+        "name": "PGID",
+        "value": "{{gid}}"
+      },
+      {
+        "name": "UMASK",
+        "value": "002"
+      },
+      {
+        "name": "TZ",
+        "value": "{{tz}}"
+      }
+    ],
+    "check": {
+      "port": "web",
+      "path": "/ping"
+    },
+    "minMemoryMB": 256,
+    "notes": "The first visit asks you to choose how to sign in. Under Settings → Download Clients, add qBittorrent or SABnzbd by the server's LAN address and port; Prowlarr fills in the indexers. Add /data/media/films as the root folder. Give every download app the same Media and downloads folder, with downloads in /data/downloads and your library in /data/media, so finished files move into the library without being copied. The folder must belong to the apps' user (or set APPS_MEDIA_UID and APPS_MEDIA_GID to its owner); point Jellyfin at the library inside it."
+  }
+}

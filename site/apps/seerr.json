@@ -1,0 +1,45 @@
+{
+  "source": "cirrusstore",
+  "serial": 1,
+  "expires": "2027-05-10T15:17:04Z",
+  "app": {
+    "id": "seerr",
+    "name": "Seerr",
+    "description": "Lets your household ask for films and series, and sends the requests to Sonarr and Radarr.",
+    "website": "https://github.com/seerr-team/seerr",
+    "icon": "Send",
+    "color": "#6366f1",
+    "group": "Watch & listen",
+    "image": "ghcr.io/seerr-team/seerr",
+    "tag": "v3.5.1",
+    "digest": "sha256:d8fab675b55ad293ded98fd71efcfd46054cbad9746534ae1cc4794a88c0b3be",
+    "ports": [
+      {
+        "name": "web",
+        "container": 5055,
+        "host": 5055,
+        "main": true
+      }
+    ],
+    "volumes": [
+      {
+        "name": "config",
+        "path": "/app/config",
+        "kind": "config"
+      }
+    ],
+    "env": [
+      {
+        "name": "TZ",
+        "value": "{{tz}}"
+      }
+    ],
+    "runAsUser": true,
+    "check": {
+      "port": "web",
+      "path": "/api/v1/status"
+    },
+    "minMemoryMB": 512,
+    "notes": "Formerly Jellyseerr. The first visit signs you in with your Jellyfin account (Jellyfin's address is the server's LAN address and port 8096), then connects Sonarr and Radarr. People then sign in with their own Jellyfin accounts to make requests."
+  }
+}

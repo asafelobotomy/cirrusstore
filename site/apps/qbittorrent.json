@@ -1,0 +1,82 @@
+{
+  "source": "cirrusstore",
+  "serial": 1,
+  "expires": "2027-05-10T15:17:04Z",
+  "app": {
+    "id": "qbittorrent",
+    "name": "qBittorrent",
+    "description": "Download torrents, from a web page.",
+    "website": "https://www.qbittorrent.org",
+    "icon": "Download",
+    "color": "#2f67ba",
+    "group": "Downloads",
+    "image": "ghcr.io/linuxserver/qbittorrent",
+    "tag": "5.3.0_v2.1.2-ls487",
+    "digest": "sha256:3d4c4545d51a690a0df15a2ff99038823a88a9822df8e794526447b9afbd7384",
+    "ports": [
+      {
+        "name": "web",
+        "container": 8090,
+        "host": 8090,
+        "main": true
+      },
+      {
+        "name": "peers",
+        "container": 6881,
+        "host": 6881
+      },
+      {
+        "name": "peers-udp",
+        "container": 6881,
+        "host": 6881,
+        "protocol": "udp"
+      }
+    ],
+    "volumes": [
+      {
+        "name": "config",
+        "path": "/config",
+        "kind": "config"
+      },
+      {
+        "name": "data",
+        "path": "/data",
+        "kind": "media",
+        "writable": true,
+        "label": "Media and downloads folder"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "value": "{{uid}}"
+      },
+      {
+        "name": "PGID",
+        "value": "{{gid}}"
+      },
+      {
+        "name": "UMASK",
+        "value": "002"
+      },
+      {
+        "name": "TZ",
+        "value": "{{tz}}"
+      },
+      {
+        "name": "WEBUI_PORT",
+        "value": "8090"
+      },
+      {
+        "name": "TORRENTING_PORT",
+        "value": "6881"
+      }
+    ],
+    "check": {
+      "port": "web",
+      "path": "/"
+    },
+    "minMemoryMB": 256,
+    "notes": "Keep the suggested web port, 8090: qBittorrent refuses its own page when the two sides differ. Sign in as admin with the temporary password in the app's log, then set your own under Tools → Options → Web UI. Set the download folder to /data/downloads. Give every download app the same Media and downloads folder, with downloads in /data/downloads and your library in /data/media, so finished files move into the library without being copied. The folder must belong to the apps' user (or set APPS_MEDIA_UID and APPS_MEDIA_GID to its owner); point Jellyfin at the library inside it."
+  }
+}
