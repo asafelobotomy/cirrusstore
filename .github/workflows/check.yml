@@ -27,6 +27,7 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version: "1.27" # CirrusUX's go.mod at the pinned tag
+          cache: false # nothing here to cache
       - name: Shell scripts
         run: shellcheck scripts/*.sh
       - name: Definitions and site
