@@ -38,32 +38,20 @@ layout.
 - Pin GitHub Actions to commits, with the version in a comment.
 
 ## Open work
-Before the first publication (CirrusUX ROADMAP §5, step 2):
-1. ~~Create the public GitHub repository, Pages from GitHub Actions,
-   private vulnerability reporting~~: done 11 November 2026.
-2. Bring `defs/` up to date: newest stable tag and digest for each of the
-   11 apps that came from CirrusUX. Checked on 11 November 2026: Home
-   Assistant moved to 2026.11.1 and Nextcloud's rebuilt 35.0.2-apache got
-   its new digest; the other nine were already newest. Picard moved from
-   mikenye/picard (stopped at 2.13.3) to jlesage/musicbrainz-picard
-   (Picard 3.0.4, amd64 and arm64). Nothing was installed from the old
-   image, so nobody needs moving over. The first wave of new apps
-   (qBittorrent, SABnzbd, Sonarr, Radarr, Lidarr, Prowlarr, Bazarr, Seerr)
-   was added the same day. On 11 November 2026 all 19 were installed,
-   opened, and removed through a CirrusUX panel on a Debian 13 test VM
-   (Podman), and Sonarr was updated from 4.0.19 to 4.0.20 through the
-   panel's update check. Prowlarr moved to its newer build `-ls168`.
-   LinuxServer restarts its build counter (Sonarr's `-ls4` is newer than
-   `-ls329`), so check a LinuxServer pin against the `latest` digest, not
-   the highest number.
-3. The maintainer signs the first site (`scripts/sign.sh`), commits and
-   pushes `site/`; `pages.yml` publishes it.
-4. Check the live site: `curl` `index.json`, and run
-   `.tools/cirrusstore-v0.7.1 verify -pub cirrusstore.pub` against a
-   download of it. Then on a CirrusUX panel press **Check CirrusStore** and
-   install one app from the official source.
-5. Note in CirrusUX's ROADMAP that the official catalogue is published.
+The first site was published on 11 November 2026 (serial 1, 19 apps,
+expires 10 May 2027): signed by the maintainer, deployed by `pages.yml`,
+verified from a download against `cirrusstore.pub`, and fetched by a
+CirrusUX 0.7.1 panel, which installed, opened and removed Prowlarr from it.
+Every app was first installed, opened and removed through a panel on a
+Debian 13 test VM (Podman), and Sonarr updated through the update check.
+
+When pinning a LinuxServer image, check the tag against the `latest`
+digest, not the highest build number: LinuxServer restarts its build
+counter (Sonarr's `-ls4` is newer than `-ls329`).
+
+To publish a change: edit `defs/`, let `check.yml` pass, then the
+maintainer runs `scripts/sign.sh KEY`, commits and pushes `site/`.
 
 Later: new apps (one per pull request, with the tested tag), a page at the
-site root that lists the apps for people, and a reminder to re-sign before
-the 180 days run out (the weekly check already fails 30 days ahead).
+site root that lists the apps for people, and re-signing before 10 May 2027
+(the weekly check fails from 10 April).
