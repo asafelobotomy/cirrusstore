@@ -34,9 +34,8 @@ layout.
 
 ## Open work
 Before the first publication (CirrusUX ROADMAP §5, step 2):
-1. Create the GitHub repository `asafelobotomy/cirrusstore` (public) and
-   push this one. Settings → Pages → Source: GitHub Actions. Turn on
-   private vulnerability reporting.
+1. ~~Create the public GitHub repository, Pages from GitHub Actions,
+   private vulnerability reporting~~: done 11 November 2026.
 2. Bring `defs/` up to date: newest stable tag and digest for each of the
    11 apps, each tried on a test machine (install, open, update, remove).
 3. The maintainer signs the first site (`scripts/sign.sh`), commits and
