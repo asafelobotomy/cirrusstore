@@ -47,11 +47,15 @@ Before the first publication (CirrusUX ROADMAP §5, step 2):
    its new digest; the other nine were already newest. Picard moved from
    mikenye/picard (stopped at 2.13.3) to jlesage/musicbrainz-picard
    (Picard 3.0.4, amd64 and arm64). Nothing was installed from the old
-   image, so nobody needs moving over. Each app still needs trying on a test
-   machine (install, open, update, remove). The first wave of new apps (qBittorrent, SABnzbd,
-   Sonarr, Radarr, Lidarr, Prowlarr, Bazarr, Seerr) was added on
-   11 November 2026: images run and answer their checks under Podman, but
-   none has been installed through a CirrusUX panel yet.
+   image, so nobody needs moving over. The first wave of new apps
+   (qBittorrent, SABnzbd, Sonarr, Radarr, Lidarr, Prowlarr, Bazarr, Seerr)
+   was added the same day. On 11 November 2026 all 19 were installed,
+   opened, and removed through a CirrusUX panel on a Debian 13 test VM
+   (Podman), and Sonarr was updated from 4.0.19 to 4.0.20 through the
+   panel's update check. Prowlarr moved to its newer build `-ls168`.
+   LinuxServer restarts its build counter (Sonarr's `-ls4` is newer than
+   `-ls329`), so check a LinuxServer pin against the `latest` digest, not
+   the highest number.
 3. The maintainer signs the first site (`scripts/sign.sh`), commits and
    pushes `site/`; `pages.yml` publishes it.
 4. Check the live site: `curl` `index.json`, and run
