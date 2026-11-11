@@ -46,8 +46,8 @@ Before the first publication (CirrusUX ROADMAP §5, step 2):
    Assistant moved to 2026.11.1 and Nextcloud's rebuilt 35.0.2-apache got
    its new digest; the other nine were already newest. Picard moved from
    mikenye/picard (stopped at 2.13.3) to jlesage/musicbrainz-picard
-   (Picard 3.0.4, amd64 and arm64); check on a test machine that an
-   installed Picard updates to it cleanly. Each app still needs trying on a test
+   (Picard 3.0.4, amd64 and arm64). Nothing was installed from the old
+   image, so nobody needs moving over. Each app still needs trying on a test
    machine (install, open, update, remove). The first wave of new apps (qBittorrent, SABnzbd,
    Sonarr, Radarr, Lidarr, Prowlarr, Bazarr, Seerr) was added on
    11 November 2026: images run and answer their checks under Podman, but
