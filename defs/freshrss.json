@@ -1,0 +1,48 @@
+{
+  "id": "freshrss",
+  "name": "FreshRSS",
+  "description": "Follow news sites and blogs in one reader, without ads or tracking.",
+  "website": "https://freshrss.org",
+  "icon": "ScrollText",
+  "color": "#0062be",
+  "group": "Organise",
+  "image": "docker.io/freshrss/freshrss",
+  "tag": "1.30.4",
+  "digest": "sha256:af44385229541bee24aa9148d0ff8f3b40e095373c63a2c0f74e09a27d3c59df",
+  "ports": [
+    {
+      "name": "web",
+      "container": 80,
+      "host": 8070,
+      "main": true
+    }
+  ],
+  "volumes": [
+    {
+      "name": "data",
+      "path": "/var/www/FreshRSS/data",
+      "kind": "data"
+    },
+    {
+      "name": "extensions",
+      "path": "/var/www/FreshRSS/extensions",
+      "kind": "config"
+    }
+  ],
+  "env": [
+    {
+      "name": "TZ",
+      "value": "{{tz}}"
+    },
+    {
+      "name": "CRON_MIN",
+      "value": "3,33"
+    }
+  ],
+  "check": {
+    "port": "web",
+    "path": "/i/"
+  },
+  "minMemoryMB": 128,
+  "notes": "The first visit walks you through setup: choose SQLite and create your account. Feeds refresh every half hour."
+}
