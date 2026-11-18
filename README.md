@@ -9,9 +9,9 @@ arrive this way without waiting for a CirrusUX release.
 
 ## Status
 
-Not published yet. The public key is in CirrusUX since 0.7.1; the first
-signed site is still to come. What is left is in [AGENTS.md](AGENTS.md),
-"Open work".
+Published since 11 November 2026: 19 apps, serial 1, signed until 10 May
+2027. The public key is in CirrusUX since 0.7.1. What is left is in
+[AGENTS.md](AGENTS.md), "Open work".
 
 ## How it fits together
 
