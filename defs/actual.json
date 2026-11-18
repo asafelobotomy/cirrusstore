@@ -1,0 +1,44 @@
+{
+  "id": "actual",
+  "name": "Actual Budget",
+  "description": "Plan your spending with envelope budgeting, synced across your devices.",
+  "website": "https://actualbudget.org",
+  "icon": "LayoutDashboard",
+  "color": "#8719e0",
+  "group": "Organise",
+  "image": "docker.io/actualbudget/actual-server",
+  "tag": "26.11.0",
+  "digest": "sha256:06cf186569cf58d93e12659ff1a517b65b5b0ebee7050a3991d4bd8a1d398da6",
+  "ports": [
+    {
+      "name": "web",
+      "container": 5006,
+      "host": 5006,
+      "main": true
+    }
+  ],
+  "volumes": [
+    {
+      "name": "data",
+      "path": "/data",
+      "kind": "data"
+    }
+  ],
+  "env": [
+    {
+      "name": "TZ",
+      "value": "{{tz}}"
+    },
+    {
+      "name": "ACTUAL_HOSTNAME",
+      "value": "0.0.0.0"
+    }
+  ],
+  "runAsUser": true,
+  "check": {
+    "port": "web",
+    "path": "/health"
+  },
+  "minMemoryMB": 256,
+  "notes": "Browsers only open it over HTTPS: reach it through tailscale serve or your reverse proxy. The first visit sets the server password."
+}
