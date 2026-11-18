@@ -1,0 +1,40 @@
+{
+  "id": "changedetection",
+  "name": "changedetection.io",
+  "description": "Watches web pages and tells you when they change, such as a price drop or a back-in-stock notice.",
+  "website": "https://changedetection.io",
+  "icon": "Search",
+  "color": "#3056d3",
+  "group": "Tools",
+  "image": "docker.io/dgtlmoon/changedetection.io",
+  "tag": "0.70.3",
+  "digest": "sha256:47b1e9cc3eff820e6022b655e3fcc948625f60c1770ae8b9c30aa3bf104dc255",
+  "ports": [
+    {
+      "name": "web",
+      "container": 5000,
+      "host": 5010,
+      "main": true
+    }
+  ],
+  "volumes": [
+    {
+      "name": "data",
+      "path": "/datastore",
+      "kind": "data"
+    }
+  ],
+  "env": [
+    {
+      "name": "TZ",
+      "value": "{{tz}}"
+    }
+  ],
+  "runAsUser": true,
+  "check": {
+    "port": "web",
+    "path": "/"
+  },
+  "minMemoryMB": 256,
+  "notes": "It has no password at first: set one under Settings. Some shops only show prices in a full browser, which this version can't run, so a few pages may not be watched."
+}
