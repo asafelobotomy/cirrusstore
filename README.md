@@ -62,7 +62,9 @@ signatures expire; re-sign then with the same command.
 
 `--agent` signs through the SSH agent at `$SSH_AUTH_SOCK` instead, so the key
 can stay in a password manager. The agent must hold the key in
-`cirrusstore.pub` as an Ed25519 SSH key.
+`cirrusstore.pub` as an Ed25519 SSH key. With the Proton Pass desktop app,
+that is `SSH_AUTH_SOCK=~/.ssh/proton-pass-ssh-agent.sock scripts/sign.sh --agent`;
+`pass-cli`'s own agent uses a different socket.
 
 ## Built-in apps
 
