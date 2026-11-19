@@ -1,8 +1,15 @@
 {
   "source": "cirrusstore",
-  "serial": 1,
-  "expires": "2027-05-10T15:17:04Z",
+  "serial": 2,
+  "expires": "2027-05-18T13:20:02Z",
   "apps": [
+    {
+      "id": "actual",
+      "serial": 1,
+      "name": "Actual Budget",
+      "group": "Organise",
+      "icon": "LayoutDashboard"
+    },
     {
       "id": "audiobookshelf",
       "serial": 1,
@@ -16,6 +23,27 @@
       "name": "Bazarr",
       "group": "Downloads",
       "icon": "Type"
+    },
+    {
+      "id": "changedetection",
+      "serial": 1,
+      "name": "changedetection.io",
+      "group": "Tools",
+      "icon": "Search"
+    },
+    {
+      "id": "freshrss",
+      "serial": 1,
+      "name": "FreshRSS",
+      "group": "Organise",
+      "icon": "ScrollText"
+    },
+    {
+      "id": "gitea",
+      "serial": 1,
+      "name": "Gitea",
+      "group": "Tools",
+      "icon": "GitBranch"
     },
     {
       "id": "home-assistant",
@@ -135,6 +163,13 @@
       "name": "Vaultwarden",
       "group": "Home",
       "icon": "Lock"
+    },
+    {
+      "id": "vikunja",
+      "serial": 1,
+      "name": "Vikunja",
+      "group": "Organise",
+      "icon": "CircleCheck"
     }
   ]
 }

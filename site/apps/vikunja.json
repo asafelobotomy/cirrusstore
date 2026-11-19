@@ -1,0 +1,63 @@
+{
+  "source": "cirrusstore",
+  "serial": 1,
+  "expires": "2027-05-18T13:20:02Z",
+  "app": {
+    "id": "vikunja",
+    "name": "Vikunja",
+    "description": "To-do lists and projects for you and your household, with lists, boards and due dates.",
+    "website": "https://vikunja.io",
+    "icon": "CircleCheck",
+    "color": "#1973ff",
+    "group": "Organise",
+    "image": "docker.io/vikunja/vikunja",
+    "tag": "2.8.0",
+    "digest": "sha256:35d937baf3b5d5803bed6b9e11d007448b7b536df9e4346dc35551e1072636c3",
+    "ports": [
+      {
+        "name": "web",
+        "container": 3456,
+        "host": 3456,
+        "main": true
+      }
+    ],
+    "volumes": [
+      {
+        "name": "files",
+        "path": "/app/vikunja/files",
+        "kind": "data"
+      },
+      {
+        "name": "db",
+        "path": "/db",
+        "kind": "data"
+      }
+    ],
+    "env": [
+      {
+        "name": "VIKUNJA_SERVICE_TIMEZONE",
+        "value": "{{tz}}"
+      },
+      {
+        "name": "VIKUNJA_CORS_ENABLE",
+        "value": "false"
+      },
+      {
+        "name": "VIKUNJA_SERVICE_ENABLEREGISTRATION",
+        "choices": [
+          "true",
+          "false"
+        ],
+        "default": "true",
+        "label": "Allow new accounts"
+      }
+    ],
+    "runAsUser": true,
+    "check": {
+      "port": "web",
+      "path": "/api/v1/info"
+    },
+    "minMemoryMB": 128,
+    "notes": "The first visit lets you register. Turn new accounts off once everyone in the household has one."
+  }
+}
