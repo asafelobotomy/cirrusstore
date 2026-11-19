@@ -12,7 +12,7 @@ layout.
   `shellcheck scripts/*.sh` too.
 - Try a tool change from a local CirrusUX checkout:
   `CIRRUSUX_SRC=../CirrusUX scripts/check.sh`.
-- `scripts/sign.sh KEY` signs with the offline key. Only the maintainer
+- `scripts/sign.sh KEY` (or `--agent`, through the SSH agent) signs with the offline key. Only the maintainer
   runs it; never run it, never ask for the key, and never edit `site/` by
   hand: its files are signed byte for byte.
 

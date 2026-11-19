@@ -51,7 +51,7 @@ CI checks it with a throwaway key, so it doesn't need the real one.
 Publishing is the maintainer's step, on a machine with the offline key:
 
 ```bash
-scripts/sign.sh /media/offline/cirrusstore.key
+scripts/sign.sh /media/offline/cirrusstore.key     # or: scripts/sign.sh --agent
 git diff --stat site/        # one envelope per changed app, and the index
 git add site && git commit -m 'Sign the catalogue' && git push
 ```
@@ -59,6 +59,10 @@ git add site && git commit -m 'Sign the catalogue' && git push
 Pushing `site/` to `main` runs `.github/workflows/pages.yml`, which checks
 the site again and publishes it. A weekly check fails a month before the
 signatures expire; re-sign then with the same command.
+
+`--agent` signs through the SSH agent at `$SSH_AUTH_SOCK` instead, so the key
+can stay in a password manager. The agent must hold the key in
+`cirrusstore.pub` as an Ed25519 SSH key.
 
 ## Built-in apps
 

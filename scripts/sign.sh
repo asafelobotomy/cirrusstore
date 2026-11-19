@@ -3,15 +3,26 @@
 # only. Then review `git diff site/`, commit and push; Pages publishes it.
 #
 #   scripts/sign.sh /media/offline/cirrusstore.key [DAYS]
+#   scripts/sign.sh --agent [DAYS]
+#
+# With --agent the key stays in the SSH agent at $SSH_AUTH_SOCK (a password
+# manager's, say): the agent must offer the key in cirrusstore.pub, as an
+# Ed25519 SSH key. It may ask you to approve each signature.
 #
 # An unchanged definition keeps its serial and only gets a new expiry
 # (DAYS, default 180); a changed one goes up by one. An app removed from
 # defs/ leaves the catalogue. The index's serial goes up on every run.
 set -euo pipefail
-key=${1:?usage: scripts/sign.sh /path/to/cirrusstore.key [DAYS]}
-days=${2:-180}
-key=$(cd "$(dirname "$key")" && pwd)/$(basename "$key")
+usage='usage: scripts/sign.sh /path/to/cirrusstore.key [DAYS] | scripts/sign.sh --agent [DAYS]'
+first=${1:?$usage}
 root=$(cd "$(dirname "$0")/.." && pwd)
+days=${2:-180}
+if [ "$first" = --agent ]; then
+	keyargs=(-agent -pub "$root/cirrusstore.pub")
+else
+	key=$(cd "$(dirname "$first")" && pwd)/$(basename "$first")
+	keyargs=(-key "$key")
+fi
 cd "$root"
 
 # Broken definitions are refused before anything is signed. The old site
@@ -27,8 +38,8 @@ for f in site/apps/*.json; do
 		echo "removed: $id"
 	fi
 done
-"$tool" sign -key "$key" -source cirrusstore -days "$days" -dir site defs/*.json
-"$tool" index -key "$key" -source cirrusstore -days "$days" -dir site
+"$tool" sign "${keyargs[@]}" -source cirrusstore -days "$days" -dir site defs/*.json
+"$tool" index "${keyargs[@]}" -source cirrusstore -days "$days" -dir site
 if ! "$tool" verify -pub cirrusstore.pub site; then
 	echo "sign.sh: site/ doesn't verify against cirrusstore.pub: is this the official key?" >&2
 	echo "sign.sh: undo with: git checkout -- site/ && git clean -fd site/" >&2
